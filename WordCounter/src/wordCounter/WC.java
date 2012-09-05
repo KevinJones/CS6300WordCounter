@@ -1,3 +1,4 @@
+package wordCounter;
 /**
  * Word Counter
  * More comments later.
