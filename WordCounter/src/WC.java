@@ -19,20 +19,31 @@ public class WC {
 		{
 			//TODO: Print error message 1 and exit
 		}
-		// TODO: Open file
+		
+		if(!openFile())
+		{
+			//TODO: Print error message 2 and exit
+		}
+		
 		System.out.println(countWords());
 	}
 	
 	private static Boolean init()
 	{
 		//TODO: implement this method
-		return true;
+		return false;
 	}
 	
 	private static Boolean fetchArguments()
 	{
 		//TODO: implement this method
-		return true;
+		return false;
+	}
+	
+	private static Boolean openFile()
+	{
+		//TODO: implement this method
+		return false;
 	}
 	
 	private static int countWords()
