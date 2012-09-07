@@ -13,8 +13,8 @@ public class WC {
 
 	// static member variables.
 	private static File fileInput;
-	private static int iThreshold;
-	private static String strDelimiters;
+	private static int iThreshold = 1;
+	private static String strDelimiters = " .,:;";
 	
 	/**
 	 * @param args
