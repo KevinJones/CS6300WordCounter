@@ -41,6 +41,8 @@ public class WC {
 		{
 			//TODO: Print error message 2 and exit
 			// System.exit(FILE_ERROR);
+			System.out.println("ERROR: unable to process file");
+			System.exit(FILE_ERROR);
 		}
 		
 		int wordsCounted = 0;
