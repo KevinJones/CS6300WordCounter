@@ -6,6 +6,8 @@ package wordCounter;
 
 import java.io.*;
 
+// This is a meaningless test comment. -Kevin
+
 /**
  * The main class for Word Counter.
  */
