@@ -43,14 +43,49 @@ public class WC {
 	
 	private static Boolean openFile()
 	{
+        
+
 		//TODO: implement this method
 		return false;
 	}
 	
 	private static int countWords()
 	{
-		//TODO: implement this method
-		return 0;
+        int wordLength = 0;
+        int wordCount = 0;
+        boolean[] delimiterFlags = {false, false};
+        
+        // TODO: Get the file from openFile.
+        // TODO: Get the delimiter set from fetchArguments.
+        String delimiters = " .,:;";
+        // TODO: Get the word length threshold from fetchArguments.
+        int wordThreshold = 1;
+
+        boolean isEndOfFile = true; // TODO
+        while(!isEndOfFile)
+        {
+            char c = ' '; // TODO: read a character.
+            wordLength++;
+            boolean charIsDelimiter = delimiters.indexOf(c) != -1;
+            if(charIsDelimiter)
+            {
+                delimiterFlags[1] = true;
+                boolean hasDelimitersOnBothSides = (delimiterFlags[0] && delimiterFlags[1]);
+                if (hasDelimitersOnBothSides)
+                {
+                    if(wordLength - 1 >= wordThreshold)
+                    {
+                        wordCount++;
+                    }
+                }
+                wordLength = 0;
+                delimiterFlags[0] = true;
+                delimiterFlags[1] = false;
+            }
+
+        }
+
+        return wordCount;
 	}
 
 }
