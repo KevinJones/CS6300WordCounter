@@ -26,6 +26,7 @@ public class WC {
 	/**
 	 * @param args
 	 * @author KevinJones
+	 * modified
 	 */
 	public static void main(String[] args) {
 		
