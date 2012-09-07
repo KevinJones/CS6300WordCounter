@@ -49,6 +49,12 @@ public class WC {
 		return false;
 	}
 	
+	/**
+	 * Reads the inputFile, delimiters, and wordThreshold variables to count the
+	 * number of words (sequences of non-delimiter characters between two delimiters)
+	 * in the input file.
+	 * @return The number of words in the file
+	 */
 	private static int countWords()
 	{
         int wordLength = 0;
