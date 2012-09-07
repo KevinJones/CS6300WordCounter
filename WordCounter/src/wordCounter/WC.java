@@ -67,10 +67,10 @@ public class WC {
         // TODO: Get the word length threshold from fetchArguments.
         int wordThreshold = 1;
 
-        boolean isEndOfFile = true; // TODO
+        boolean isEndOfFile = true; // TODO: collapse this boolean into the while statement, which steps through the file char by char.
         while(!isEndOfFile)
         {
-            char c = ' '; // TODO: read a character.
+            char c = ' '; // TODO: read a character from the file.
             wordLength++;
             boolean charIsDelimiter = delimiters.indexOf(c) != -1;
             if(charIsDelimiter)
