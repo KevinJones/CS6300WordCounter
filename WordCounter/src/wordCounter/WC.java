@@ -12,9 +12,14 @@ import java.io.*;
 public class WC {
 
 	// static member variables.
-	private static File fileInput;
+	private static FileReader fileInput;
 	private static int iThreshold = 1;
 	private static String strDelimiters = " .,:;";
+	
+	// exit status codes.
+	private static final int ARGUMENT_ERROR = 1;
+	private static final int FILE_ERROR = 2;
+	private static final int IO_ERROR = 3;
 	
 	/**
 	 * @param args
@@ -26,14 +31,23 @@ public class WC {
 		if(!fetchArguments())
 		{
 			//TODO: Print error message 1 and exit
+			// System.exit(ARGUMENT_ERROR);
 		}
 		
 		if(!openFile())
 		{
 			//TODO: Print error message 2 and exit
+			// System.exit(FILE_ERROR);
 		}
 		
-		System.out.println(countWords());
+		int wordsCounted = 0;
+		try {
+			wordsCounted = countWords();
+		} catch (IOException e) {
+			System.out.println("ERROR: File IO exception");
+			System.exit(IO_ERROR);
+		}
+		System.out.println(wordsCounted);
 	}
 	
 	private static Boolean init()
@@ -61,32 +75,27 @@ public class WC {
 	 * number of words (sequences of non-delimiter characters between two delimiters)
 	 * in the input file.
 	 * @return The number of words in the file
+	 * @throws IOException if an I/O operation fails or is interrupted
 	 */
-	private static int countWords()
+	private static int countWords() throws IOException
 	{
         int wordLength = 0;
         int wordCount = 0;
         boolean[] delimiterFlags = {false, false};
-        
-        // TODO: Get the file from openFile.
-        // TODO: Get the delimiter set from fetchArguments.
-        String delimiters = " .,:;";
-        // TODO: Get the word length threshold from fetchArguments.
-        int wordThreshold = 1;
 
-        boolean isEndOfFile = true; // TODO: collapse this boolean into the while statement, which steps through the file char by char.
+        char c = (char) fileInput.read();
+        boolean isEndOfFile = (c == -1);
         while(!isEndOfFile)
         {
-            char c = ' '; // TODO: read a character from the file.
             wordLength++;
-            boolean charIsDelimiter = delimiters.indexOf(c) != -1;
+            boolean charIsDelimiter = strDelimiters.indexOf(c) != -1;
             if(charIsDelimiter)
             {
                 delimiterFlags[1] = true;
                 boolean hasDelimitersOnBothSides = (delimiterFlags[0] && delimiterFlags[1]);
                 if (hasDelimitersOnBothSides)
                 {
-                    if(wordLength - 1 >= wordThreshold)
+                    if(wordLength - 1 >= iThreshold)
                     {
                         wordCount++;
                     }
@@ -95,6 +104,10 @@ public class WC {
                 delimiterFlags[0] = true;
                 delimiterFlags[1] = false;
             }
+            
+            // read the next char.
+            c = (char) fileInput.read();
+            isEndOfFile = (c == -1);
 
         }
 

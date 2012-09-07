@@ -6,3 +6,5 @@ WordCounter/bin/wordCounter/WC.class
 WordCounter/bin/wordCounter/WC.class
 
 WordCounter/bin/wordCounterTest/WCTest.class
+
+*.class
