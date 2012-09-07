@@ -4,11 +4,18 @@ package wordCounter;
  * More comments later.
  */
 
+import java.io.*;
+
 /**
  * The main class for Word Counter.
  */
 public class WC {
 
+	// static member variables.
+	private static File fileInput;
+	private static int iThreshold;
+	private static String strDelimiters;
+	
 	/**
 	 * @param args
 	 * @author KevinJones
