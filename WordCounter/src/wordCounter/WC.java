@@ -35,6 +35,8 @@ public class WC {
 		{
 			//TODO: Print error message 1 and exit
 			// System.exit(ARGUMENT_ERROR);
+			System.out.println("ERROR: ill-formed command");
+			System.exit(ARGUMENT_ERROR);
 		}
 		
 		if(!openFile())
