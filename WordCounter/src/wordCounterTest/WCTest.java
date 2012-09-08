@@ -7,21 +7,19 @@ import java.net.URL;
 
 public class WCTest extends TestCase {
 
-	public void testCountWordsEmptyFile() throws IOException {
-		
-		final String TEST_FILENAME = "res/testFileEmpty.txt";		
-		
+	private void wordCountTest(String testFilename, int expectedCount) {
+
 		try {			
 			Class<WCTest> c = WCTest.class;
 			ClassLoader cl = c.getClassLoader();
-			URL url = cl.getResource(TEST_FILENAME);
+			URL url = cl.getResource(testFilename);
 			String fullPath = url.getPath();
 			String replacedPath = fullPath.replaceAll("%20", " ");
 			
 			FileReader r = new FileReader(replacedPath);
 			WC.fileInput = r;
 		} catch (FileNotFoundException e){
-			fail("Test file " + TEST_FILENAME + " not found.");
+			fail("Test file " + testFilename + " not found.");
 		}		
 		
 		int result = -1;
@@ -32,23 +30,34 @@ public class WCTest extends TestCase {
 			fail("Wc.countWords() hit an exception.");
 		}
 		
-		assertEquals("Counted " + result + "words instead of 0", result, 0);
+		assertEquals("Counted " + result + "words instead of " + expectedCount, result, expectedCount);
+	}
+	
+	public void testCountWordsEmptyFile() {
+		
+		wordCountTest("res/testFileEmpty.txt", 0);
+		
 	}
 	
 	public void testMain() {
 		fail("Not yet implemented"); // TODO
 	}
     
-    public void testCountWordsOneWordFile() {
-		fail("Not yet implemented");
+    public void testCountWordsOneWordFile1() {
+    	wordCountTest("res/testFileOneWord1.txt", 1);
+	}
+    
+    public void testCountWordsOneWordFile2() {
+    	wordCountTest("res/testFileOneWord2.txt", 1);
 	}
 	
-	public void testCountWordsTenWordFile() {
-		fail("Not yet implemented");
+	public void testCountWordsNormalWordFile() {
+		wordCountTest("res/testFileNormal.txt", 8);
 	}
 	
 	public void testCountWordsCustomThresholdLength() {
-		fail("Not yet implemented");
+		WC.iThreshold = 4;
+		wordCountTest("res/testFileNormal.txt", 5);
 	}
 	
 	public void testCountWordsCustomDelimiters() {
@@ -56,7 +65,8 @@ public class WCTest extends TestCase {
 	}
 	
 	public void testCountWordsNoDelimitersTest() {
-		fail("Not yet implemented");
+		WC.strDelimiters = "";
+		wordCountTest("res/testFileNormal.txt", 0);
 	}
 
 	public void testFetch() {
