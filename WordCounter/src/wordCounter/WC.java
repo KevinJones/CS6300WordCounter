@@ -15,14 +15,14 @@ import java.io.*;
 public class WC {
 
 	// static member variables.
-	private static FileReader fileInput;
-	private static int iThreshold = 1;
-	private static String strDelimiters = " .,:;";
+	public static FileReader fileInput;
+	public static int iThreshold = 1;
+	public static String strDelimiters = " .,:;";
 	
 	// exit status codes.
-	private static final int ARGUMENT_ERROR = 1;
-	private static final int FILE_ERROR = 2;
-	private static final int IO_ERROR = 3;
+	public static final int ARGUMENT_ERROR = 1;
+	public static final int FILE_ERROR = 2;
+	public static final int IO_ERROR = 3;
 	
 	/**
 	 * @param args
@@ -55,7 +55,7 @@ public class WC {
 		System.out.println(wordsCounted);
 	}
 	
-	private static Boolean init()
+	public static Boolean init()
 	{
 		//TODO: implement this method
 		return true;
@@ -98,7 +98,7 @@ public class WC {
 		return true;
 	}
 	
-	private static Boolean openFile()
+	public static Boolean openFile()
 	{
         
 
@@ -113,7 +113,7 @@ public class WC {
 	 * @return The number of words in the file
 	 * @throws IOException if an I/O operation fails or is interrupted
 	 */
-	private static int countWords() throws IOException
+	public static int countWords() throws IOException
 	{
         int wordLength = 0;
         int wordCount = 0;

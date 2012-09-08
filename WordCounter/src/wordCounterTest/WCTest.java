@@ -1,19 +1,65 @@
-<<<<<<< HEAD
 package wordCounterTest;
 
+import wordCounter.WC;
 import junit.framework.TestCase;
+import java.io.*;
 
 public class WCTest extends TestCase {
 
+	public void testCountWordsEmptyFile() {
+		
+		final String TEST_FILENAME = "testFileEmpty.txt";
+        
+		String dir = null;
+		File currentDirectory = new File(".");
+		try {
+			currentDirectory.getCanonicalPath();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			WC.fileInput = new FileReader(dir + TEST_FILENAME);
+		} catch (FileNotFoundException e){
+			fail("Test file " + TEST_FILENAME + " not found.");
+		}		
+		
+		int result = -1;
+		try {
+			result = WC.countWords();
+		} catch (Exception e)
+		{
+			fail("Wc.countWords() hit an exception.");
+		}
+		
+		assertEquals(result, 0);
+	}
+	
 	public void testMain() {
 		fail("Not yet implemented"); // TODO
 	}
-	
-	public void testCountWords() {
-		fail("Not yet implemented"); // TODO
-		
+    
+    public void testCountWordsOneWordFile() {
+		fail("Not yet implemented");
 	}
 	
+	public void testCountWordsTenWordFile() {
+		fail("Not yet implemented");
+	}
+	
+	public void testCountWordsCustomThresholdLength() {
+		fail("Not yet implemented");
+	}
+	
+	public void testCountWordsCustomDelimiters() {
+		fail("Not yet implemented");
+	}
+	
+	public void testCountWordsNoDelimitersTest() {
+		fail("Not yet implemented");
+	}
+
 	public void testFetch() {
 		String delims = "d";
 		String threshold = "30";
@@ -23,40 +69,3 @@ public class WCTest extends TestCase {
 	}
 
 }
-=======
-package wordCounterTest;
-
-import junit.framework.TestCase;
-
-public class WCTest extends TestCase {
-
-	public void testMain() {
-		fail("Not yet implemented"); // TODO
-	}
-	
-	public void countWordsEmptyFileTest() {
-		fail("Not yet implemented"); // TODO
-	}
-	
-	public void countWordsOneWordFileTest() {
-		fail("Not yet implemented");
-	}
-	
-	public void countWordsTenWordFileTest() {
-		fail("Not yet implemented");
-	}
-	
-	public void countWordsCustomThresholdLengthTest() {
-		fail("Not yet implemented");
-	}
-	
-	public void countWordsCustomDelimitersTest() {
-		fail("Not yet implemented");
-	}
-	
-	public void countWordsNoDelimitersTest() {
-		fail("Not yet implemented");
-	}
-
-}
->>>>>>> 6889b301195b43d4b263214c087d8c5310a365bd
