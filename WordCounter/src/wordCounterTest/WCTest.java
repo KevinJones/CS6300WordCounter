@@ -7,6 +7,12 @@ import java.net.URL;
 
 public class WCTest extends TestCase {
 
+	public void setUp()
+	{
+		WC.iThreshold = WC.DEFAULT_THRESHOLD;
+		WC.strDelimiters = WC.DEFAULT_DELIMITERS;
+	}
+	
 	private void wordCountTest(String testFilename, int expectedCount) {
 
 		try {			
@@ -30,7 +36,7 @@ public class WCTest extends TestCase {
 			fail("Wc.countWords() hit an exception.");
 		}
 		
-		assertEquals("Counted " + result + "words instead of " + expectedCount, result, expectedCount);
+		assertEquals(expectedCount, result);
 	}
 	
 	public void testCountWordsEmptyFile() {
@@ -43,7 +49,7 @@ public class WCTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
     
-    public void testCountWordsOneWordFile1() {
+    public void testCountWordsOneWordFile1() {   	
     	wordCountTest("res/testFileOneWord1.txt", 1);
 	}
     

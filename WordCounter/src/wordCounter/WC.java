@@ -14,10 +14,14 @@ import java.io.*;
  */
 public class WC {
 
+	// defaults
+	public static final int DEFAULT_THRESHOLD = 1;
+	public static final String DEFAULT_DELIMITERS = " .,:;";
+	
 	// static member variables.
 	public static FileReader fileInput;
-	public static int iThreshold = 1;
-	public static String strDelimiters = " .,:;";
+	public static int iThreshold = DEFAULT_THRESHOLD;
+	public static String strDelimiters = DEFAULT_DELIMITERS;
 	
 	// exit status codes.
 	public static final int ARGUMENT_ERROR = 1;
