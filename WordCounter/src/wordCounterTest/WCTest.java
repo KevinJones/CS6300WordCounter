@@ -61,7 +61,8 @@ public class WCTest extends TestCase {
 	}
 	
 	public void testCountWordsCustomDelimiters() {
-		fail("Not yet implemented");
+		WC.strDelimiters = "d";
+		wordCountTest("res/testFileDC.txt", 3);
 	}
 	
 	public void testCountWordsNoDelimitersTest() {
