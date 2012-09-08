@@ -35,14 +35,14 @@ public class WC {
 		
 		if(!fetchArguments(args))
 		{
-			//TODO: Print error message 1 and exit
-			// System.exit(ARGUMENT_ERROR);
+			System.out.println("ERROR: ill-formed command");
+			System.exit(ARGUMENT_ERROR);
 		}
 		
 		if(!openFile())
 		{
-			//TODO: Print error message 2 and exit
-			// System.exit(FILE_ERROR);
+			System.out.println("ERROR: unable to process file");
+			System.exit(FILE_ERROR);
 		}
 		
 		int wordsCounted = 0;
