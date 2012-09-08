@@ -3,24 +3,23 @@ package wordCounterTest;
 import wordCounter.WC;
 import junit.framework.TestCase;
 import java.io.*;
+import java.net.URL;
 
 public class WCTest extends TestCase {
 
-	public void testCountWordsEmptyFile() {
+	public void testCountWordsEmptyFile() throws IOException {
 		
-		final String TEST_FILENAME = "testFileEmpty.txt";
-        
-		String dir = null;
-		File currentDirectory = new File(".");
-		try {
-			currentDirectory.getCanonicalPath();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		final String TEST_FILENAME = "res/testFileEmpty.txt";		
 		
-		try {
-			WC.fileInput = new FileReader(dir + TEST_FILENAME);
+		try {			
+			Class<WCTest> c = WCTest.class;
+			ClassLoader cl = c.getClassLoader();
+			URL url = cl.getResource(TEST_FILENAME);
+			String fullPath = url.getPath();
+			String replacedPath = fullPath.replaceAll("%20", " ");
+			
+			FileReader r = new FileReader(replacedPath);
+			WC.fileInput = r;
 		} catch (FileNotFoundException e){
 			fail("Test file " + TEST_FILENAME + " not found.");
 		}		
@@ -33,7 +32,7 @@ public class WCTest extends TestCase {
 			fail("Wc.countWords() hit an exception.");
 		}
 		
-		assertEquals(result, 0);
+		assertEquals("Counted " + result + "words instead of 0", result, 0);
 	}
 	
 	public void testMain() {

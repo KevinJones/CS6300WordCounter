@@ -119,9 +119,10 @@ public class WC {
         int wordCount = 0;
         boolean[] delimiterFlags = {false, false};
 
-        char c = (char) fileInput.read();
-        boolean isEndOfFile = (c == -1);
-        while(!isEndOfFile)
+        int readInt = fileInput.read();
+        boolean isEndOfFile = (readInt == -1);
+        char c = (char) readInt;
+        while(!isEndOfFile && wordLength < Integer.MAX_VALUE && wordCount < Integer.MAX_VALUE)
         {
             wordLength++;
             boolean charIsDelimiter = strDelimiters.indexOf(c) != -1;
@@ -142,8 +143,9 @@ public class WC {
             }
             
             // read the next char.
-            c = (char) fileInput.read();
-            isEndOfFile = (c == -1);
+            readInt = fileInput.read();
+            isEndOfFile = (readInt == -1);
+            c = (char) readInt;
 
         }
 
