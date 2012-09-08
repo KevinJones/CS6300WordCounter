@@ -27,12 +27,13 @@ public class WC {
 	/**
 	 * @param args
 	 * @author KevinJones
-	 * modified
+	 * 
 	 */
 	public static void main(String[] args) {
 		
 		init();
-		if(!fetchArguments())
+		
+		if(!fetchArguments(args))
 		{
 			//TODO: Print error message 1 and exit
 			// System.exit(ARGUMENT_ERROR);
@@ -57,13 +58,44 @@ public class WC {
 	private static Boolean init()
 	{
 		//TODO: implement this method
-		return false;
+		return true;
 	}
 	
-	private static Boolean fetchArguments()
+	private static Boolean fetchArguments(String[] args)
 	{
-		//TODO: implement this method
-		return false;
+		/*Initialize reuired variables*/
+		int args_length = args.length;
+		int min_word_count = 1;
+		String delimiters = new String();
+		String[] copy_args =  new String[args_length];
+		
+		/*Extract the command-line arguments*/
+				
+		for (int i = 0; i<args_length; i++){
+			copy_args[i] = args[i];
+		}
+		
+		/*Extract the minimum word count or threshold and the delimiters*/
+		for (int i=0; i<args.length; i++){
+			if (copy_args[i].equals("-l")){
+				min_word_count = Integer.parseInt(copy_args[i+1]);
+			}				
+			if (copy_args[i].equals("-c")){
+				delimiters = copy_args[i+1];
+			}							
+		}
+		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
+		
+		String file_path = copy_args[0];
+		
+		/*Display the command-line arguments*/
+		System.out.println("Entered file path is: " + file_path);
+		System.out.println("Minimum word count is: " + min_word_count);
+		System.out.println("The delimiters are: ");
+		for(char temp: delimiters_array){
+			System.out.print(temp);
+		}
+		return true;
 	}
 	
 	private static Boolean openFile()
