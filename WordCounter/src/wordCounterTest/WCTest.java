@@ -61,11 +61,13 @@ public class WCTest extends TestCase {
 	}
 
 	public void testFetch() {
-		String delims = "d";
-		String threshold = "30";
-		WC.fetchArguments(delims, threshold);
+//		String delims = "d";
+//		String threshold = "30";
+//		WC.fetchArguments(delims, threshold);
+//		
+//		assertEquals(WC.threshold, 30);
 		
-		assertEquals(WC.threshold, 30);
+		fail("Not yet implemented");
 	}
 
 }
