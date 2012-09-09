@@ -8,6 +8,7 @@ import java.io.*;
 
 // This is a meaningless test comment. -Kevin
 // This is a second meaningless comment
+//This is a third meaningless comment - Xiaofangs
 
 /**
  * The main class for Word Counter.
