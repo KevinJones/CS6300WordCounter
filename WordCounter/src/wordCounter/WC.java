@@ -108,7 +108,7 @@ public class WC {
 	{
         
 
-		//TODO: implement this method
+		
 		File file=new File(fileName);
 		
 		//to test whether the tool can read the file
@@ -118,7 +118,6 @@ public class WC {
 			try {
 				fileInput=new FileReader(file);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return false;
 			}
