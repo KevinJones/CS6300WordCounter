@@ -61,6 +61,15 @@ public class WCTest extends TestCase {
 		wordCountTest("res/testFileNormal.txt", 8);
 	}
 	
+	public void testCountWordsNormalWordFileAsJpeg() {
+		wordCountTest("res/testFileNormalAsJpeg.jpeg", 8);
+	}
+	
+	public void testCountWordsJpeg()
+	{
+		wordCountTest("res/testFileCatJpeg.jpeg", 15133);
+	}
+	
 	public void testCountWordsCustomThresholdLength() {
 		WC.iThreshold = 4;
 		wordCountTest("res/testFileNormal.txt", 5);
