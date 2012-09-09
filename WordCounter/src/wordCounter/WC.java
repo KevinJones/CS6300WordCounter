@@ -22,6 +22,7 @@ public class WC {
 	public static FileReader fileInput;
 	public static int iThreshold = DEFAULT_THRESHOLD;
 	public static String strDelimiters = DEFAULT_DELIMITERS;
+	public static String fileName;
 	
 	// exit status codes.
 	public static final int ARGUMENT_ERROR = 1;
@@ -90,10 +91,10 @@ public class WC {
 		}
 		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
 		
-		String file_path = copy_args[0];
+		fileName = copy_args[0];
 		
 		/*Display the command-line arguments*/
-		System.out.println("Entered file path is: " + file_path);
+		System.out.println("Entered file path is: " + fileName);
 		System.out.println("Minimum word count is: " + min_word_count);
 		System.out.println("The delimiters are: ");
 		for(char temp: delimiters_array){
@@ -107,7 +108,21 @@ public class WC {
         
 
 		//TODO: implement this method
-		return false;
+		File file=new File(fileName);
+		
+		//to test whether the tool can read the file
+		if(!file.canRead()) return false;
+		
+		
+			try {
+				fileInput=new FileReader(file);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		
+		return true;
 	}
 	
 	/**
