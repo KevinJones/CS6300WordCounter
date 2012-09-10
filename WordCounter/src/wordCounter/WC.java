@@ -92,7 +92,11 @@ public class WC {
 		}
 		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
 		
+		try{
 		fileName = copy_args[0];
+		}catch(ArrayIndexOutOfBoundsException e){
+			return false;
+		}
 		
 		/*Display the command-line arguments*/
 		System.out.println("Entered file path is: " + fileName);
