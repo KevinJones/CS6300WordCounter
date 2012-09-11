@@ -128,6 +128,7 @@ public class WC {
 			return false;
 		}
 		
+		WC.strDelimiters = delimiters;
 		WC.iThreshold = min_word_count;
 		
 		return true;
