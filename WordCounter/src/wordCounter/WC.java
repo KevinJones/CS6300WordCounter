@@ -39,17 +39,14 @@ public class WC {
 	 * 
 	 */
 	public static void main(String[] args) {
-		
 		init();
 		
-		if(!fetchArguments(args))
-		{
+		if(!fetchArguments(args)) {
 			System.out.println("ERROR: ill-formed command");
 			System.exit(ARGUMENT_ERROR);
 		}
 		
-		if(!openFile())
-		{
+		if(!openFile()) {
 			System.out.println("ERROR: unable to process file");
 			System.exit(FILE_ERROR);
 		}
@@ -64,38 +61,35 @@ public class WC {
 		System.out.println(wordsCounted);
 	}
 	
-	public static Boolean init()
-	{
+	public static Boolean init(){
 		iThreshold = DEFAULT_THRESHOLD;
 		strDelimiters = DEFAULT_DELIMITERS;
-		
-		
+
 		return true;
 	}
 	
-	public static Boolean fetchArguments(String[] args)
-	{
+	public static Boolean fetchArguments(String[] args){
 		/*Initialize reuired variables*/
-		int args_length = args.length;
-		int min_word_count = 1;
-		String delimiters = new String();
-		String[] copy_args =  new String[args_length];
-		int count_c = 0;
-		int count_l = 0;
+		int iArgsLength = args.length;
+		int iMinWordCount = 1;
+		String strDelimiters = new String();
+		String[] astrCopyArgs =  new String[iArgsLength];
+		int iCountC = 0;
+		int iCountL = 0;
 		
 		/*Extract the command-line arguments*/
 				
-		for (int i = 0; i<args_length; i++){
-			copy_args[i] = args[i];
+		for (int i = 0; i<iArgsLength; i++){
+			astrCopyArgs[i] = args[i];
 		}
 		
 		/*Extract the minimum word count or threshold and the delimiters*/
 		for (int i=1; i<args.length; i++){
-			if (copy_args[i].equals("-l")){
-				count_l++;
-				if(count_l == 1){
+			if (astrCopyArgs[i].equals("-l")){
+				iCountL++;
+				if(iCountL == 1){
 					try{
-						min_word_count = Integer.parseInt(copy_args[i+1]);
+						iMinWordCount = Integer.parseInt(astrCopyArgs[i+1]);
 					}
 					catch(Exception e){
 						return false;
@@ -105,11 +99,11 @@ public class WC {
 				else{
 					return false;
 				}
-			} else if (copy_args[i].equals("-c")){
-				count_c++;
-				if(count_c == 1){
+			} else if (astrCopyArgs[i].equals("-c")){
+				iCountC++;
+				if(iCountC == 1){
 					try {
-						delimiters = copy_args[i+1];
+						strDelimiters = astrCopyArgs[i+1];
 					} catch (Exception e) {
 						return false;
 					}
@@ -123,40 +117,38 @@ public class WC {
 				return false;
 			}
 		}
-		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
 		
 		try{
-			fileName = copy_args[0];
+			fileName = astrCopyArgs[0];
 		}catch(ArrayIndexOutOfBoundsException e){
 			return false;
 		}
 		
-		WC.strDelimiters = delimiters;
-		WC.iThreshold = min_word_count;
+		WC.strDelimiters = strDelimiters;
+		WC.iThreshold = iMinWordCount;
 		
 		return true;
 	}
 	
-	public static Boolean openFile()
-	{
+	public static Boolean openFile() {
 		Class<WCTest> c = WCTest.class;
 		ClassLoader cl = c.getClassLoader();
 		
 		URL url;
-		String fullPath;
-		String replacedPath;
+		String strFullPath;
+		String strReplacedPath;
 		
 		try {
 			url = cl.getResource(fileName);
-			fullPath = url.getPath();
-			replacedPath = fullPath.replaceAll("%20", " ");
+			strFullPath = url.getPath();
+			strReplacedPath = strFullPath.replaceAll("%20", " ");
 		} catch (NullPointerException e) {
 			return false;
 		}
 		
 		
 		try {
-			fileInput = new FileReader(replacedPath);
+			fileInput = new FileReader(strReplacedPath);
 		} catch (FileNotFoundException e1) {
 			// The file doesn't exist or we can't read it.
 			return false;
@@ -172,43 +164,38 @@ public class WC {
 	 * @return The number of words in the file
 	 * @throws IOException if an I/O operation fails or is interrupted
 	 */
-	public static int countWords() throws IOException
-	{
-        int wordLength = 0;
-        int wordCount = 0;
-        boolean[] delimiterFlags = {false, false};
+	public static int countWords() throws IOException{
+        int iWordLength = 0;
+        int iWordCount = 0;
+        boolean[] abDelimiterFlags = {false, false};
 
-        int readInt = fileInput.read();
-        boolean isEndOfFile = (readInt == -1);
-        char c = (char) readInt;
-        while(!isEndOfFile && wordLength < Integer.MAX_VALUE && wordCount < Integer.MAX_VALUE)
-        {
-            wordLength++;
-            boolean charIsDelimiter = strDelimiters.indexOf(c) != -1;
-            if(charIsDelimiter)
-            {
-                delimiterFlags[1] = true;
-                boolean hasDelimitersOnBothSides = (delimiterFlags[0] && delimiterFlags[1]);
-                if (hasDelimitersOnBothSides)
-                {
-                    if(wordLength - 1 >= iThreshold)
-                    {
-                        wordCount++;
+        int iRead = fileInput.read();
+        boolean bEndOfFile = (iRead == -1);
+        char c = (char) iRead;
+        while(!bEndOfFile && iWordLength < Integer.MAX_VALUE && iWordCount < Integer.MAX_VALUE){
+            iWordLength++;
+            boolean bCharIsDelimiter = strDelimiters.indexOf(c) != -1;
+            if(bCharIsDelimiter){
+                abDelimiterFlags[1] = true;
+                boolean bHasDelimitersOnBothSides = (abDelimiterFlags[0] && abDelimiterFlags[1]);
+                if (bHasDelimitersOnBothSides){
+                    if(iWordLength - 1 >= iThreshold){
+                        iWordCount++;
                     }
                 }
-                wordLength = 0;
-                delimiterFlags[0] = true;
-                delimiterFlags[1] = false;
+                iWordLength = 0;
+                abDelimiterFlags[0] = true;
+                abDelimiterFlags[1] = false;
             }
             
             // read the next char.
-            readInt = fileInput.read();
-            isEndOfFile = (readInt == -1);
-            c = (char) readInt;
+            iRead = fileInput.read();
+            bEndOfFile = (iRead == -1);
+            c = (char) iRead;
 
         }
 
-        return wordCount;
+        return iWordCount;
 	}
 
 }
