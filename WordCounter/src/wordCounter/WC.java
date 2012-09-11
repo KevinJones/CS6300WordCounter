@@ -145,14 +145,19 @@ public class WC {
         int readInt = fileInput.read();
         boolean isEndOfFile = (readInt == -1);
         char c = (char) readInt;
+        
+        
+        boolean charIsDelimiter;
+        boolean hasDelimitersOnBothSides;
+        
         while(!isEndOfFile && wordLength < Integer.MAX_VALUE && wordCount < Integer.MAX_VALUE)
         {
             wordLength++;
-            boolean charIsDelimiter = strDelimiters.indexOf(c) != -1;
+            charIsDelimiter = strDelimiters.indexOf(c) != -1;
             if(charIsDelimiter)
             {
                 delimiterFlags[1] = true;
-                boolean hasDelimitersOnBothSides = (delimiterFlags[0] && delimiterFlags[1]);
+                hasDelimitersOnBothSides = (delimiterFlags[0] && delimiterFlags[1]);
                 if (hasDelimitersOnBothSides)
                 {
                     if(wordLength - 1 >= iThreshold)
