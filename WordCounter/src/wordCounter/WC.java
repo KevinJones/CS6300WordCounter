@@ -74,6 +74,8 @@ public class WC {
 		int min_word_count = 1;
 		String delimiters = new String();
 		String[] copy_args =  new String[args_length];
+		int count_c = 0;
+		int count_l = 0;
 		
 		/*Extract the command-line arguments*/
 				
@@ -84,10 +86,21 @@ public class WC {
 		/*Extract the minimum word count or threshold and the delimiters*/
 		for (int i=0; i<args.length; i++){
 			if (copy_args[i].equals("-l")){
-				min_word_count = Integer.parseInt(copy_args[i+1]);
+				count_l++;
+				if(count_l == 1){
+					try{
+						min_word_count = Integer.parseInt(copy_args[i+1]);
+					}
+					catch(Exception e){
+						return false;
+					}
+				}				
 			}				
 			if (copy_args[i].equals("-c")){
-				delimiters = copy_args[i+1];
+				count_c++;
+				if(count_c == 1){
+					delimiters = copy_args[i+1];
+				}				
 			}							
 		}
 		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
