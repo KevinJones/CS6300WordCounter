@@ -94,13 +94,19 @@ public class WC {
 					catch(Exception e){
 						return false;
 					}
+					else{
+						return false;
+					}
 				}				
 			}				
 			if (copy_args[i].equals("-c")){
 				count_c++;
 				if(count_c == 1){
 					delimiters = copy_args[i+1];
-				}				
+				}
+				else{
+					return false;
+				}
 			}							
 		}
 		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
