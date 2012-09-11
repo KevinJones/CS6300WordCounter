@@ -95,5 +95,10 @@ public class WCTest extends TestCase {
 		int expected = 30;
 		assertEquals(expected, WC.iThreshold);
 	}
+	
+	public void testCountWordsThresholdNine() {
+		WC.iThreshold = 9;
+		wordCountTest("res/testFileSDP.txt", 1);
+	}
 
 }

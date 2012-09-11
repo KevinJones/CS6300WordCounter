@@ -117,10 +117,12 @@ public class WC {
 		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
 		
 		try{
-		fileName = copy_args[0];
+			fileName = copy_args[0];
 		}catch(ArrayIndexOutOfBoundsException e){
 			return false;
 		}
+		
+		WC.iThreshold = min_word_count;
 		
 		return true;
 	}
