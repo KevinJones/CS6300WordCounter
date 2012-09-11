@@ -9,10 +9,6 @@ import java.net.URL;
 
 import wordCounterTest.WCTest;
 
-// This is a meaningless test comment. -Kevin
-// This is a second meaningless comment
-//This is a third meaningless comment - Xiaofang
-
 /**
  * The main class for Word Counter.
  */
