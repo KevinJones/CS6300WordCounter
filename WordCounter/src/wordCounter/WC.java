@@ -67,7 +67,7 @@ public class WC {
 		return true;
 	}
 	
-	private static Boolean fetchArguments(String[] args)
+	public static Boolean fetchArguments(String[] args)
 	{
 		/*Initialize reuired variables*/
 		int args_length = args.length;
@@ -90,7 +90,6 @@ public class WC {
 				delimiters = copy_args[i+1];
 			}							
 		}
-		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
 		
 		try{
 		fileName = copy_args[0];
@@ -98,21 +97,13 @@ public class WC {
 			return false;
 		}
 		
-		/*Display the command-line arguments*/
-		System.out.println("Entered file path is: " + fileName);
-		System.out.println("Minimum word count is: " + min_word_count);
-		System.out.println("The delimiters are: ");
-		for(char temp: delimiters_array){
-			System.out.print(temp);
-		}
+		iThreshold = min_word_count;
+		strDelimiters = delimiters;
 		return true;
 	}
 	
 	public static Boolean openFile()
 	{
-        
-
-		
 		File file=new File(fileName);
 		
 		//to test whether the tool can read the file
