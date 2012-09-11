@@ -110,6 +110,10 @@ public class WC {
 		Class<WCTest> c = WCTest.class;
 		ClassLoader cl = c.getClassLoader();
 		URL url = cl.getResource(fileName);
+		if(url == null)
+		{
+			return false;
+		}
 		String fullPath = url.getPath();
 		String replacedPath = fullPath.replaceAll("%20", " ");
 		
