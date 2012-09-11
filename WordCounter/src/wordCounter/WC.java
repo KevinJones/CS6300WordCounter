@@ -24,8 +24,8 @@ public class WC {
 	
 	// static member variables.
 	public static FileReader fileInput;
-	public static int iThreshold = DEFAULT_THRESHOLD;
-	public static String strDelimiters = DEFAULT_DELIMITERS;
+	public static int iThreshold;
+	public static String strDelimiters;
 	public static String fileName;
 	
 	// exit status codes.
@@ -66,7 +66,10 @@ public class WC {
 	
 	public static Boolean init()
 	{
-		//TODO: implement this method
+		iThreshold = DEFAULT_THRESHOLD;
+		strDelimiters = DEFAULT_DELIMITERS;
+		
+		
 		return true;
 	}
 	
