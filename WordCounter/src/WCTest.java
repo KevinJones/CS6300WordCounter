@@ -1,6 +1,4 @@
-package wordCounterTest;
 
-import wordCounter.WC;
 import junit.framework.TestCase;
 import java.io.*;
 import java.net.URL;
