@@ -67,7 +67,7 @@ public class WC {
 		return true;
 	}
 	
-	private static Boolean fetchArguments(String[] args)
+	public static Boolean fetchArguments(String[] args)
 	{
 		/*Initialize reuired variables*/
 		int args_length = args.length;
@@ -93,11 +93,11 @@ public class WC {
 					}
 					catch(Exception e){
 						return false;
-					}
-					else{
-						return false;
-					}
-				}				
+					}					
+				}	
+				else{
+					return false;
+				}
 			}				
 			if (copy_args[i].equals("-c")){
 				count_c++;
