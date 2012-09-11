@@ -5,6 +5,9 @@ package wordCounter;
  */
 
 import java.io.*;
+import java.net.URL;
+
+import wordCounterTest.WCTest;
 
 // This is a meaningless test comment. -Kevin
 // This is a second meaningless comment
@@ -104,18 +107,20 @@ public class WC {
 	
 	public static Boolean openFile()
 	{
-		File file=new File(fileName);
+		Class<WCTest> c = WCTest.class;
+		ClassLoader cl = c.getClassLoader();
+		URL url = cl.getResource(fileName);
+		String fullPath = url.getPath();
+		String replacedPath = fullPath.replaceAll("%20", " ");
 		
-		//to test whether the tool can read the file
-		if(!file.canRead()) return false;
+		FileReader r = null;
+		try {
+			r = new FileReader(replacedPath);
+		} catch (FileNotFoundException e1) {
+			return false;
+		}
 		
-		
-			try {
-				fileInput=new FileReader(file);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				return false;
-			}
+		fileInput = r;
 		
 		return true;
 	}
