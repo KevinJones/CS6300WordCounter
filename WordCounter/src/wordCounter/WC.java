@@ -13,8 +13,6 @@ package wordCounter;
 import java.io.*;
 import java.net.URL;
 
-import wordCounterTest.WCTest;
-
 /**
  * The main class for Word Counter.
  */
@@ -146,7 +144,7 @@ public class WC {
 	 * @return True if successful, false otherwise.
 	 */
 	public static Boolean openFile() {
-		Class<WCTest> c = WCTest.class;
+		Class<WC> c = WC.class;
 		ClassLoader cl = c.getClassLoader();
 		
 		URL url;

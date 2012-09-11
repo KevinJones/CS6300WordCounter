@@ -39,6 +39,23 @@ public class WCTest extends TestCase {
 		assertEquals(expectedCount, result);
 	}
 	
+	private void testfetchArguments1 (String[] param)
+	{
+		boolean ret;
+		try
+		{
+			ret = WC.fetchArguments(param);
+			if (ret == false)
+			{
+				fail("Wc.fetchArguments() hit an exception.");
+			}
+		}
+		catch(Exception e)
+		{
+			fail("Wc.fetchArguments() hit an exception.");
+		}
+	}
+	
 	public void testCountWordsEmptyFile() {
 		
 		wordCountTest("res/testFileEmpty.txt", 0);
@@ -96,5 +113,43 @@ public class WCTest extends TestCase {
 		WC.iThreshold = 9;
 		wordCountTest("res/testFileSDP.txt", 1);
 	}
+	
+    public void testAudioFile() {   	
+    	System.out.println("Audio");
+    	wordCountTest("res/mp3file.mp3", 72428);
+	}
+    
+	public void testOneDelim()
+	{
+    	System.out.println("1Delim");
+    	WC.strDelimiters = "f";
+		wordCountTest("res/testFileOneDelim.doc", 0);
+	}
+	
+	public void testaabbcc()
+	{
+    	System.out.println("aabbcc");
+//    	WC.strDelimiters = "d";
+    	//WC.iThreshold = 9;
+		wordCountTest("res/testaabbcc.txt", 0);
+	}
+	
+	public void testFetchnormal() {
+//		String delims = "d";
+//		String threshold = "30";
+//		WC.fetchArguments(delims, threshold);
+//		
+//		assertEquals(WC.threshold, 30);
+		String param[] = {"ajay.txt", "-l", "123", "-c", "1ef" };
+		testfetchArguments1(param);
+		//fail("Not yet implemented");
+		
+	}
+
+	public void testFetchWrongThreshold() {
+		String param[] = {"ajay1.txt", "-l", "abc", "-c", "1ef" };
+		testfetchArguments1(param);
+		
+	}	
 
 }
