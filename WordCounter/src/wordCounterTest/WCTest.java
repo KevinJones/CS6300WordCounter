@@ -86,13 +86,14 @@ public class WCTest extends TestCase {
 	}
 
 	public void testFetch() {
-//		String delims = "d";
-//		String threshold = "30";
-//		WC.fetchArguments(delims, threshold);
-//		
-//		assertEquals(WC.threshold, 30);
+		String delims = "d";
+		String threshold = "30";
 		
-		fail("Not yet implemented");
+		String[] args = {"irrelevantFilename", "-c", delims, "l", threshold };
+		WC.fetchArguments( args );
+		
+		int expected = 30;
+		assertEquals(expected, WC.iThreshold);
 	}
 
 }

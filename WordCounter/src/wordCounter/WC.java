@@ -5,10 +5,9 @@ package wordCounter;
  */
 
 import java.io.*;
+import java.net.URL;
 
-// This is a meaningless test comment. -Kevin
-// This is a second meaningless comment
-//This is a third meaningless comment - Xiaofang
+import wordCounterTest.WCTest;
 
 /**
  * The main class for Word Counter.
@@ -67,7 +66,7 @@ public class WC {
 		return true;
 	}
 	
-	private static Boolean fetchArguments(String[] args)
+	public static Boolean fetchArguments(String[] args)
 	{
 		/*Initialize reuired variables*/
 		int args_length = args.length;
@@ -103,7 +102,6 @@ public class WC {
 				}				
 			}							
 		}
-		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
 		
 		try{
 		fileName = copy_args[0];
@@ -111,33 +109,31 @@ public class WC {
 			return false;
 		}
 		
-		/*Display the command-line arguments*/
-		System.out.println("Entered file path is: " + fileName);
-		System.out.println("Minimum word count is: " + min_word_count);
-		System.out.println("The delimiters are: ");
-		for(char temp: delimiters_array){
-			System.out.print(temp);
-		}
+		iThreshold = min_word_count;
+		strDelimiters = delimiters;
 		return true;
 	}
 	
 	public static Boolean openFile()
 	{
-        
-
+		Class<WCTest> c = WCTest.class;
+		ClassLoader cl = c.getClassLoader();
+		URL url = cl.getResource(fileName);
+		if(url == null)
+		{
+			return false;
+		}
+		String fullPath = url.getPath();
+		String replacedPath = fullPath.replaceAll("%20", " ");
 		
-		File file=new File(fileName);
+		FileReader r = null;
+		try {
+			r = new FileReader(replacedPath);
+		} catch (FileNotFoundException e1) {
+			return false;
+		}
 		
-		//to test whether the tool can read the file
-		if(!file.canRead()) return false;
-		
-		
-			try {
-				fileInput=new FileReader(file);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				return false;
-			}
+		fileInput = r;
 		
 		return true;
 	}
@@ -158,14 +154,19 @@ public class WC {
         int readInt = fileInput.read();
         boolean isEndOfFile = (readInt == -1);
         char c = (char) readInt;
+        
+        
+        boolean charIsDelimiter;
+        boolean hasDelimitersOnBothSides;
+        
         while(!isEndOfFile && wordLength < Integer.MAX_VALUE && wordCount < Integer.MAX_VALUE)
         {
             wordLength++;
-            boolean charIsDelimiter = strDelimiters.indexOf(c) != -1;
+            charIsDelimiter = strDelimiters.indexOf(c) != -1;
             if(charIsDelimiter)
             {
                 delimiterFlags[1] = true;
-                boolean hasDelimitersOnBothSides = (delimiterFlags[0] && delimiterFlags[1]);
+                hasDelimitersOnBothSides = (delimiterFlags[0] && delimiterFlags[1]);
                 if (hasDelimitersOnBothSides)
                 {
                     if(wordLength - 1 >= iThreshold)
