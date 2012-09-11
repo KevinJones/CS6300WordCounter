@@ -123,7 +123,7 @@ public class WCTest extends TestCase {
 	{
     	System.out.println("1Delim");
     	WC.strDelimiters = "f";
-		wordCountTest("res/testFileOneDelim.doc", 0);
+		wordCountTest("res/testFileOneDelim.doc", 14);
 	}
 	
 	public void testaabbcc()
@@ -148,7 +148,19 @@ public class WCTest extends TestCase {
 
 	public void testFetchWrongThreshold() {
 		String param[] = {"ajay1.txt", "-l", "abc", "-c", "1ef" };
-		testfetchArguments1(param);
+		
+		
+		boolean exceptionCaught = false;
+		try
+		{
+			WC.fetchArguments(param);
+		}
+		catch(Exception e)
+		{
+			exceptionCaught = true;
+		}
+		
+		assert(exceptionCaught);
 		
 	}	
 
