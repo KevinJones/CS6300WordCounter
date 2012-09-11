@@ -87,7 +87,7 @@ public class WC {
 		}
 		
 		/*Extract the minimum word count or threshold and the delimiters*/
-		for (int i=0; i<args.length; i++){
+		for (int i=1; i<args.length; i++){
 			if (copy_args[i].equals("-l")){
 				count_l++;
 				if(count_l == 1){
@@ -96,13 +96,13 @@ public class WC {
 					}
 					catch(Exception e){
 						return false;
-					}					
+					}
+					i++;
 				}	
 				else{
 					return false;
 				}
-			}				
-			if (copy_args[i].equals("-c")){
+			} else if (copy_args[i].equals("-c")){
 				count_c++;
 				if(count_c == 1){
 					try {
@@ -111,8 +111,11 @@ public class WC {
 						return false;
 					}
 				}
-				
-			}							
+				i++;				
+			} else {
+				// command line argument not recognized
+				return false;
+			}
 		}
 		char delimiters_array[] = delimiters.toCharArray(); //Seperate the delimiters into individual characters
 		
