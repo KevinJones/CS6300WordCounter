@@ -1,7 +1,13 @@
 package wordCounter;
 /**
  * Word Counter
- * More comments later.
+ * A command line tool for counting words.
+ * 
+ * Authors:
+ * Swapnil Deshpande
+ * Kevin Jones
+ * Ajay Raghav
+ * Sun Xiaofang
  */
 
 import java.io.*;
@@ -30,9 +36,8 @@ public class WC {
 	public static final int IO_ERROR = 3;
 	
 	/**
+	 * Process the command line arguments and displays the nubmer of words in the input file.
 	 * @param args
-	 * @author KevinJones
-	 * 
 	 */
 	public static void main(String[] args) {
 		init();
@@ -57,6 +62,10 @@ public class WC {
 		System.out.println(wordsCounted);
 	}
 	
+	/**
+	 * Sets the inital values of member variables in the WC class.
+	 * @return True if initialization is successful.
+	 */
 	public static Boolean init(){
 		iThreshold = DEFAULT_THRESHOLD;
 		strDelimiters = DEFAULT_DELIMITERS;
@@ -64,6 +73,12 @@ public class WC {
 		return true;
 	}
 	
+	/**
+	 * Parses the command line arguments and modifies member variables of WC for the filename,
+	 * delimiters, and word threshold length.
+	 * @param args the command line arguments
+	 * @return True if successful, false if the method encountered an error.
+	 */
 	public static Boolean fetchArguments(String[] args){
 		/*Initialize reuired variables*/
 		int iArgsLength = args.length;
@@ -126,6 +141,10 @@ public class WC {
 		return true;
 	}
 	
+	/**
+	 * Opens a determined file as a FileReader.
+	 * @return True if successful, false otherwise.
+	 */
 	public static Boolean openFile() {
 		Class<WCTest> c = WCTest.class;
 		ClassLoader cl = c.getClassLoader();
