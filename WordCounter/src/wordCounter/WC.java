@@ -130,9 +130,19 @@ public class WC {
 	{
 		Class<WCTest> c = WCTest.class;
 		ClassLoader cl = c.getClassLoader();
-		URL url = cl.getResource(fileName);
-		String fullPath = url.getPath();
-		String replacedPath = fullPath.replaceAll("%20", " ");
+		
+		URL url;
+		String fullPath;
+		String replacedPath;
+		
+		try {
+			url = cl.getResource(fileName);
+			fullPath = url.getPath();
+			replacedPath = fullPath.replaceAll("%20", " ");
+		} catch (NullPointerException e) {
+			return false;
+		}
+		
 		
 		try {
 			fileInput = new FileReader(replacedPath);
