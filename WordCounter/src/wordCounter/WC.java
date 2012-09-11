@@ -120,9 +120,6 @@ public class WC {
 			return false;
 		}
 		
-		for(char temp: delimiters_array){
-			System.out.print(temp);
-		}
 		return true;
 	}
 	
