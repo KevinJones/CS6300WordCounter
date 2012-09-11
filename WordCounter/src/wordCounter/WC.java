@@ -117,10 +117,6 @@ public class WC {
 			return false;
 		}
 		
-		/*Display the command-line arguments*/
-		System.out.println("Entered file path is: " + fileName);
-		System.out.println("Minimum word count is: " + min_word_count);
-		System.out.println("The delimiters are: ");
 		for(char temp: delimiters_array){
 			System.out.print(temp);
 		}
