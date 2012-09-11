@@ -100,7 +100,7 @@ public class WCTest extends TestCase {
 		String delims = "d";
 		String threshold = "30";
 		
-		String[] args = {"irrelevantFilename", "-c", delims, "l", threshold };
+		String[] args = {"irrelevantFilename", "-c", delims, "-l", threshold };
 		WC.fetchArguments( args );
 		
 		int expected = 30;
