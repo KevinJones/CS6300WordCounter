@@ -34,3 +34,5 @@ WordCounter/bin/*
 WordCounter/src/res/testFileHuge.txt
 
 WordCounter/src/res/textFileHuge2.txt
+
+WordCounter/src/res/testDocx.docx

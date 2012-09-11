@@ -111,6 +111,9 @@ public class WC {
 						return false;
 					}
 				}
+				else{
+					return false;
+				}
 				i++;				
 			} else {
 				// command line argument not recognized

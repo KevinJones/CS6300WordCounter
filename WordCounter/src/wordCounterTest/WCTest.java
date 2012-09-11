@@ -44,10 +44,6 @@ public class WCTest extends TestCase {
 		wordCountTest("res/testFileEmpty.txt", 0);
 		
 	}
-	
-	public void testMain() {
-		fail("Not yet implemented"); // TODO
-	}
     
     public void testCountWordsOneWordFile1() {   	
     	wordCountTest("res/testFileOneWord1.txt", 1);
